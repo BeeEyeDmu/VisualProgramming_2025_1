@@ -1,0 +1,193 @@
+﻿<Window x:Class="_040_WPFCalc.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_040_WPFCalc"
+        mc:Ignorable="d"
+        Title="WPF 계산기" Height="650" Width="400">
+  <DockPanel VerticalAlignment="Stretch">
+    <!-- 결과창을 표시하는 부분 -->
+    <Grid DockPanel.Dock="Top" Height="100" Background="WhiteSmoke">
+      <TextBlock HorizontalAlignment="Right"
+                 x:Name="txtExp" Foreground="DarkGray"
+                 FontSize="16" Margin="15"></TextBlock>
+      <TextBlock HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                 x:Name="txtResult"
+                 FontSize="36" Margin="15">0</TextBlock>
+    </Grid>
+    <!-- 메모리 버튼 5개 -->
+    <Grid DockPanel.Dock="Top" Height="50">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Button Grid.Column="0"
+              x:Name="btnMC"
+              FontSize="14"
+              Background="WhiteSmoke"
+              IsEnabled="False"
+              BorderThickness="0"
+              Click="btnMC_Click">MC</Button>
+      <Button Grid.Column="1"
+              x:Name="btnMR"
+              FontSize="14"
+              Background="WhiteSmoke"
+              IsEnabled="False"
+              BorderThickness="0"
+              Click="btnMR_Click">MR</Button>
+      <Button Grid.Column="2"
+              x:Name="btnMPlus"
+              FontSize="14"
+              Background="WhiteSmoke"
+              BorderThickness="0"
+              Click="btnMPlus_Click">M+</Button>
+      <Button Grid.Column="3"
+              x:Name="btnMMinus"
+              FontSize="14"
+              Background="WhiteSmoke"
+              BorderThickness="0"
+              Click="btnMMinus_Click">M-</Button>
+      <Button Grid.Column="4"
+              x:Name="btnMS"
+              FontSize="14"
+              Background="WhiteSmoke"
+              BorderThickness="0"
+              Click="btnMS_Click">MS</Button>
+    </Grid>
+    <!-- 6행 4열 24개 버튼-->
+    <Grid DockPanel.Dock="Bottom">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      
+      <!-- 첫번째 줄 -->
+      <Button Grid.Row="0" Grid.Column="0"
+              x:Name="btnPercent"
+              FontSize="18" BorderThickness="0"
+              Margin="2 2 1 1">%</Button>
+      <Button Grid.Row="0" Grid.Column="1"
+              x:Name="btnCE"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 1 1" Click="btnCE_Click">CE</Button>
+      <Button Grid.Row="0" Grid.Column="2"
+              x:Name="btnC"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 1 1" Click="btnC_Click">C</Button>
+      <Button Grid.Row="0" Grid.Column="3"
+              x:Name="btnDel"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 2 1" Click="btnDel_Click">⌫</Button>
+
+      <!-- 두번째 줄 -->
+      <Button Grid.Row="1" Grid.Column="0"
+              x:Name="btnReci"
+              FontSize="18" BorderThickness="0"
+              Margin="2 2 1 1" Click="btnReci_Click">1/x</Button>
+      <Button Grid.Row="1" Grid.Column="1"
+              x:Name="btnSqr"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 1 1" Click="btnSqr_Click">x²</Button>
+      <Button Grid.Row="1" Grid.Column="2"
+              x:Name="btnSqrt"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 1 1" Click="btnSqrt_Click">√</Button>
+      <Button Grid.Row="1" Grid.Column="3"
+              x:Name="btnDivide"
+              FontSize="32" BorderThickness="0"
+              Margin="1 2 2 1" Click="opClick">÷</Button>
+      
+      <!-- 세번째 줄 -->
+      <Button Grid.Row="2" Grid.Column="0"
+              x:Name="btn7" Background="#FFEFEFEF"
+              FontSize="18" BorderThickness="0"
+              Margin="2 2 1 1" Click="btn1_Click">7</Button>
+      <Button Grid.Row="2" Grid.Column="1"
+              x:Name="btn8" Background="#FFEFEFEF"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 1 1" Click="btn1_Click">8</Button>
+      <Button Grid.Row="2" Grid.Column="2"
+              x:Name="btn9" Background="#FFEFEFEF"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 1 1" Click="btn1_Click">9</Button>
+      <Button Grid.Row="2" Grid.Column="3"
+              x:Name="btnTimes"
+              FontSize="32" BorderThickness="0"
+              Margin="1 2 2 1" Click="opClick">×</Button>
+
+      <!-- 네번째 줄 -->
+      <Button Grid.Row="3" Grid.Column="0"
+              x:Name="btn4" Background="#FFEFEFEF"
+              FontSize="18" BorderThickness="0"
+              Margin="2 2 1 1" Click="btn1_Click">4</Button>
+      <Button Grid.Row="3" Grid.Column="1"
+              x:Name="btn5" Background="#FFEFEFEF"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 1 1" Click="btn1_Click">5</Button>
+      <Button Grid.Row="3" Grid.Column="2"
+              x:Name="btn6" Background="#FFEFEFEF"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 1 1" Click="btn1_Click">6</Button>
+      <Button Grid.Row="3" Grid.Column="3"
+              x:Name="btnMinus"
+              FontSize="32" BorderThickness="0"
+              Margin="1 2 2 1" Click="opClick">－</Button>
+      
+      <!-- 다섯번째 줄 -->
+      <Button Grid.Row="4" Grid.Column="0"
+              x:Name="btn1" Background="#FFEFEFEF"
+              FontSize="18" BorderThickness="0"
+              Margin="2 2 1 1" Click="btn1_Click">1</Button>
+      <Button Grid.Row="4" Grid.Column="1"
+              x:Name="btn2" Background="#FFEFEFEF"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 1 1" Click="btn1_Click">2</Button>
+      <Button Grid.Row="4" Grid.Column="2"
+              x:Name="btn3" Background="#FFEFEFEF"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 1 1" Click="btn1_Click">3</Button>
+      <Button Grid.Row="4" Grid.Column="3"
+              x:Name="btnPlus"
+              FontSize="32" BorderThickness="0"
+              Margin="1 2 2 1" Click="opClick">＋</Button>
+
+      <!-- 여섯번째 줄 -->
+      <Button Grid.Row="5" Grid.Column="0"
+              x:Name="btnPlusMinus"
+              FontSize="18" BorderThickness="0"
+              Margin="2 2 1 2" Background="#FFEFEFEF"
+              Click="btnPlusMinus_Click">±</Button>
+      <Button Grid.Row="5" Grid.Column="1"
+              x:Name="btn0"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 1 2" Background="#FFEFEFEF"
+              Click="btn1_Click">0</Button>
+      <Button Grid.Row="5" Grid.Column="2"
+              x:Name="btnDot"
+              FontSize="18" BorderThickness="0"
+              Margin="1 2 1 2" Background="#FFEFEFEF"
+              Click="btnDot_Click">.</Button>
+      <Button Grid.Row="5" Grid.Column="3"
+              x:Name="btnEqual"
+              FontSize="32" BorderThickness="0"
+              Margin="1 2 2 2" Background="#FF3C59C1"
+              Foreground="White"
+              Click="btnEqual_Click">＝</Button>
+    </Grid>
+
+  </DockPanel>
+</Window>

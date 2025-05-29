@@ -1,0 +1,24 @@
+﻿<Window x:Class="_043_EIS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_043_EIS"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="530" Width="900">
+  <Grid Background="AliceBlue">
+    <StackPanel Margin="20">
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <Image Width="40" Height="40" 
+               Source="Images/mysql.png"/>
+        <TextBlock Text="Employee Information System v.1.0" 
+                   FontSize="20" FontWeight="Bold"
+                   Margin="20"/>
+      </StackPanel>
+      <StackPanel Orientation="Horizontal">
+        
+      </StackPanel>
+    </StackPanel>
+
+  </Grid>
+</Window>
