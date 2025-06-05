@@ -5,20 +5,96 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_043_EIS"
         mc:Ignorable="d"
-        Title="MainWindow" Height="530" Width="900">
+        Title="EIS" Height="580" Width="900" ResizeMode="NoResize" >
   <Grid Background="AliceBlue">
     <StackPanel Margin="20">
-      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-        <Image Width="40" Height="40" 
-               Source="Images/mysql.png"/>
-        <TextBlock Text="Employee Information System v.1.0" 
-                   FontSize="20" FontWeight="Bold"
-                   Margin="20"/>
+      <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+        <Image Width="40" Height="40" Source="Images/mysql.png"/>
+        <TextBlock Padding="10 10 10 20"  
+               FontSize="20" FontWeight="Bold" FontStyle="Italic"
+               Foreground="RoyalBlue"
+               Text="Employee Information System 1.0"/>
       </StackPanel>
       <StackPanel Orientation="Horizontal">
-        
+        <StackPanel Width="280" >
+          <StackPanel Margin="5" Orientation="Horizontal" >
+            <TextBlock Width="80" Text="사번 : "/>
+            <TextBox x:Name="txtEid" Width="150" />
+          </StackPanel>
+          <StackPanel Margin="5" Orientation="Horizontal">
+            <TextBlock Width="80" Text="이름 : "/>
+            <TextBox x:Name="txtName" Width="150" />
+          </StackPanel>
+          <StackPanel Margin="5" Orientation="Horizontal">
+            <TextBlock Width="80" Text="부서 : "/>
+            <ComboBox x:Name="cbDept" Width="150">
+              <ComboBoxItem>개발팀</ComboBoxItem>
+              <ComboBoxItem>마케팅팀</ComboBoxItem>
+              <ComboBoxItem>기획팀</ComboBoxItem>
+              <ComboBoxItem>총무팀</ComboBoxItem>
+              <ComboBoxItem>해외사업팀</ComboBoxItem>
+            </ComboBox>
+          </StackPanel>
+          <StackPanel Margin="5" Orientation="Horizontal">
+            <TextBlock Width="80" Text="직급 : "/>
+            <ComboBox x:Name="cbPos" Width="150">
+              <ComboBoxItem>이사</ComboBoxItem>
+              <ComboBoxItem>부장</ComboBoxItem>
+              <ComboBoxItem>과장</ComboBoxItem>
+              <ComboBoxItem>팀장</ComboBoxItem>
+              <ComboBoxItem>대리</ComboBoxItem>
+              <ComboBoxItem>사원</ComboBoxItem>
+            </ComboBox>
+          </StackPanel>
+          <StackPanel Margin="5" Orientation="Horizontal">
+            <TextBlock Width="80" Text="성별 : "/>
+            <RadioButton x:Name="rbMale" Content="남" />
+            <TextBlock Width="50"/>
+            <RadioButton x:Name="rbFeMale" Content="여" />
+          </StackPanel>
+          <StackPanel Margin="5" Orientation="Horizontal">
+            <TextBlock Width="80" Text="입사년월 : "/>
+            <DatePicker x:Name="dpEnter" Width="150"/>
+          </StackPanel>
+          <StackPanel Margin="5" Orientation="Horizontal">
+            <TextBlock Width="80" Text="퇴사년월 : "/>
+            <DatePicker x:Name="dpExit" Width="150"/>
+          </StackPanel>
+          <StackPanel Margin="5" Orientation="Horizontal">
+            <TextBlock Width="80" Text="연락처 : "/>
+            <TextBox x:Name="txtContact" Width="150" />
+          </StackPanel>
+          <StackPanel Margin="5" Orientation="Horizontal">
+            <TextBlock Width="80" Text="기타 : "/>
+            <TextBox x:Name="txtComment" Width="150" Height="80" 
+                   AcceptsReturn="True" 
+                   AcceptsTab="True" 
+                   TextWrapping="Wrap" 
+                   VerticalScrollBarVisibility="Auto"/>
+          </StackPanel>
+          <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnAdd" Width="100" Margin="0 0 20 0 "
+                    Click="btnAdd_Click">Insert</Button>
+            <Button x:Name="btnUpdate" Width="100" Margin="0 0 20 0 "
+                    Click="btnUpdate_Click">Update</Button>
+          </StackPanel>
+          <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnDelete" Width="100" Margin="0 0 20 0 " >Delete</Button>
+            <Button x:Name="btnLoadData" Width="100" Margin="0 0 20 0 " 
+                    Click="btnLoadData_Click">Load Data</Button>
+          </StackPanel>
+          <!-- 추가 -->
+          <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnInit" Width="100" Margin="0 0 20 0 " 
+                    Click="btnInit_Click">Init Controls</Button>            
+          </StackPanel>
+        </StackPanel>
+        <DataGrid x:Name="dataGrid" Width="540" Margin="5" AutoGenerateColumns="True"  
+                  SelectionChanged="dataGrid_SelectionChanged">
+          <DataGrid.Columns>
+          </DataGrid.Columns>
+        </DataGrid>
       </StackPanel>
     </StackPanel>
-
   </Grid>
 </Window>
