@@ -55,7 +55,7 @@ namespace _043_EIS
         gender = "여성";
 
       // 입사일, 퇴사일 처리
-      if(dpEnter.SelectedDate != null)
+      if (dpEnter.SelectedDate != null)
         dateEnter = dpEnter.SelectedDate.Value.Date.ToShortDateString();
       if (dpExit.SelectedDate != null)
         dateExit = dpExit.SelectedDate.Value.Date.ToShortDateString();
@@ -73,7 +73,7 @@ namespace _043_EIS
       string sql = string.Format("INSERT INTO eis_table (name, department, "
         + "position, gender, date_enter, date_exit, contact, comment) "
         + "VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')",
-        txtName.Text, dept, pos, gender, dateEnter, dateExit, 
+        txtName.Text, dept, pos, gender, dateEnter, dateExit,
         txtContact.Text, txtComment.Text);
 
       //MessageBox.Show(sql);
@@ -103,7 +103,7 @@ namespace _043_EIS
 
     private void btnLoadData_Click(object sender, RoutedEventArgs e)
     {
-      DisplayDataGrid();  
+      DisplayDataGrid();
     }
 
     private void DisplayDataGrid()
@@ -152,7 +152,7 @@ namespace _043_EIS
         rbFeMale.IsChecked = true;
       }
 
-      dpEnter.Text = rowView.Row[5].ToString();      
+      dpEnter.Text = rowView.Row[5].ToString();
       dpExit.Text = rowView.Row[6].ToString();
       txtContact.Text = rowView.Row[7].ToString();
       txtComment.Text = rowView.Row[8].ToString();
@@ -191,6 +191,58 @@ namespace _043_EIS
     private void btnInit_Click(object sender, RoutedEventArgs e)
     {
       InitControls();
+    }
+
+    private void btnDelete_Click(object sender, RoutedEventArgs e)
+    {
+      conn.Open();
+
+      //string sql = "DELETE FROM eis_table WHERE eid=" + txtEid.Text;
+      string sql = string.Format("DELETE FROM eis_table WHERE eid={0}",
+        txtEid.Text);
+
+      MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+      if (cmd.ExecuteNonQuery() == 1)
+        MessageBox.Show("Delete Success!");
+
+      conn.Close();
+      InitControls();
+      DisplayDataGrid();
+    }
+
+    private void btnSearch_Click(object sender, RoutedEventArgs e)
+    {
+      string sql = string.Empty;
+
+      if (txtName.Text != "")
+      {
+        sql = string.Format("SELECT * FROM eis_table WHERE name='{0}'",
+          txtName.Text);
+        MessageBox.Show(sql);
+      }
+      else if(cbPos.Text != "")
+      {
+        sql = string.Format("SELECT * FROM eis_table WHERE position='{0}'",
+          cbPos.Text);
+        MessageBox.Show(sql);
+      }
+
+      conn.Open();
+
+      try
+      {
+        MySqlDataAdapter da = new MySqlDataAdapter(sql, conn);
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        dataGrid.ItemsSource = ds.Tables[0].DefaultView;
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+
+      conn.Close();
     }
   }
 }

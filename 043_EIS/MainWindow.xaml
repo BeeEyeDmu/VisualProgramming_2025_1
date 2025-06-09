@@ -79,12 +79,15 @@
                     Click="btnUpdate_Click">Update</Button>
           </StackPanel>
           <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="btnDelete" Width="100" Margin="0 0 20 0 " >Delete</Button>
+            <Button x:Name="btnDelete" Width="100" Margin="0 0 20 0 " 
+                    Click="btnDelete_Click">Delete</Button>
             <Button x:Name="btnLoadData" Width="100" Margin="0 0 20 0 " 
                     Click="btnLoadData_Click">Load Data</Button>
           </StackPanel>
           <!-- 추가 -->
           <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnSearch" Width="100" Margin="0 0 20 0 " 
+              Click="btnSearch_Click">Search</Button>
             <Button x:Name="btnInit" Width="100" Margin="0 0 20 0 " 
                     Click="btnInit_Click">Init Controls</Button>            
           </StackPanel>
